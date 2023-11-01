@@ -24,14 +24,15 @@ jobs:
         with:
           branch: master
           path: tangem-version.txt
+
       - name: Create tag
-        uses: actions/github-script@v3
+        uses: actions/github-script@v5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.git.createRef({
+            github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ steps.version.content }}",
+              ref: 'refs/tags/${{ steps.date.outputs.date }}',
               sha: context.sha
             })
