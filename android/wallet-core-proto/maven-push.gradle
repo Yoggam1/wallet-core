@@ -3,6 +3,7 @@ apply plugin: 'maven-publish'
 publishing {
     publications {
         release(MavenPublication) {
+            groupId = "$project.GROUP"
             from components.java
         }
     }
