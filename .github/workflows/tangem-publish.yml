@@ -75,10 +75,9 @@ jobs:
       - name: Build and publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+          GITHUB_USER: ${{ secrets.GITHUB_ACTOR }}
         run: |
-          echo ${{ secrets.GITHUB_ACTOR }}
-          echo ${{ secrets.GITHUB_TOKEN }}
-#          cd android/
-#          echo sdk.dir = $ANDROID_HOME > local.properties
-#          ./gradlew build assembleRelease publish -PGITHUB_USER=${{ secrets.GITHUB_ACTOR }} -PGITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -Pversion=${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}
+          cd android/
+          echo sdk.dir = $ANDROID_HOME > local.properties
+          ./gradlew build assembleRelease publish -Pversion=${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}
+#          GITHUB_USER=${{ secrets.GITHUB_ACTOR }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
