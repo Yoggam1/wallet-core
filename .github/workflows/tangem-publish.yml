@@ -12,11 +12,17 @@ env:
 
 jobs:
   tag:
-    name: Create tag
+    name: Create tag and publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '17'
 
       - name: Read version.properties file
         id: properties
@@ -39,3 +45,11 @@ jobs:
               ref: "refs/tags/${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}",
               sha: context.sha
             })
+
+      - name: Build and publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
+        run: |
+          echo sdk.dir = $ANDROID_HOME > local.properties
+          ./gradlew build assembleRelease publish -PGITHUB_USER=${{ secrets.GITHUB_ACTOR }} -PGITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} -Pversion=${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}
