@@ -79,4 +79,4 @@ jobs:
         run: |
           cd android/
           echo sdk.dir = $ANDROID_HOME > local.properties
-          GITHUB_USER=${{ secrets.GITHUB_ACTOR }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew build assembleRelease publish -Pversion=${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}
+          GITHUB_USER=${{ secrets.GITHUB_ACTOR }} GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} ./gradlew build assembleRelease publish -Pversion=${{ steps.version.outputs.tangem }}
