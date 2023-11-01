@@ -31,3 +31,14 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+tasks.register('hello') {
+    doLast {
+        print("======================================")
+        def user = System.getenv("GITHUB_USER")
+        def token = System.getenv("GITHUB_TOKEN")
+        println user
+        println token
+        print("======================================")
+    }
+}
