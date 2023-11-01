@@ -31,7 +31,7 @@ jobs:
         run: |
           TAG=${{ steps.version.outputs.tangem }}
           if [ $(git tag -l "${TAG}") ]; then
-            echo "Tag ${TAG} exists"
+            echo "Tag ${TAG} exists. Please upgrade version in version.properties file"
             exit 1
           else
             echo "Tag ${TAG} does not exist"
