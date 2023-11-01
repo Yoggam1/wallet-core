@@ -10,7 +10,7 @@ env:
   SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_DVELOPMENT_ANDROID }}
 
 jobs:
-  tag:
+  publish:
     name: Create tag and publish
     runs-on: macos-latest
     steps:
