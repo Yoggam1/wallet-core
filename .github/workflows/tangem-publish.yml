@@ -51,7 +51,7 @@ jobs:
 
       - name: Install system dependencies
         run: |
-          tools/install-sys-dependencies-mac
+          tools/install-sys-dependencies-linux
           tools/install-rust-dependencies
 
       - name: Install Android Dependencies
