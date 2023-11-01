@@ -24,15 +24,24 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
 
-      - name: Read version.properties file
-        id: properties
-        uses: christian-draeger/read-properties@1.1.1
+      - uses: BrycensRanch/read-properties-action@v1
+        id: version
         with:
-          path: version.properties
-          properties: 'core tangem'
+          file: version.properties
+          property: tangem
+          default: 0.0.1-tangem1
 
       - name: Echo version.properties
-        run: echo "${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}"
+        run: echo ${{ steps.version.outputs.tangem }}
+#      - name: Read version.properties file
+#        id: properties
+#        uses: christian-draeger/read-properties@1.1.1
+#        with:
+#          path: version.properties
+#          properties: 'core tangem'
+#
+#      - name: Echo version.properties
+#        run: echo "${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}"
 #
 #      - name: Create tag
 #        uses: actions/github-script@v3
