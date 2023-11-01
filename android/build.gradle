@@ -37,8 +37,8 @@ tasks.register('hello') {
         print("======================================")
         def user = System.getenv("GITHUB_USER")
         def token = System.getenv("GITHUB_TOKEN")
-        println user
-        println token
+        println 'GITHUB_USER -> ' + user
+        println 'GITHUB_TOKEN -> ' + token
         print("======================================")
     }
 }
