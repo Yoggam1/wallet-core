@@ -1,4 +1,4 @@
-name: Tangem check if tag exists
+name: Tangem - Check if tag exists
 
 on:
   pull_request:
@@ -30,7 +30,7 @@ jobs:
       - name: Check for Tag
         run: |
           TAG=${{ steps.version.outputs.tangem }}
-          if git show-ref --tags --verify --quiet "refs/tags/${TAG}"; then
+          if [ $(git tag -l "${TAG}") ]; then
             echo "Tag ${TAG} exists"
             exit 1
           else

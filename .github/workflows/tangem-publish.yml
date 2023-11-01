@@ -1,4 +1,4 @@
-name: Tangem publish
+name: Tangem - Publish
 
 on:
   push:
