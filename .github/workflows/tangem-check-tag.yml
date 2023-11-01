@@ -1,0 +1,38 @@
+name: Tangem check if tag exists
+
+on:
+  pull_request:
+    branches:
+      - 'master'
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-tags: true
+
+      - name: Read version.properties file
+        uses: BrycensRanch/read-properties-action@v1
+        id: version
+        with:
+          file: version.properties
+          property: tangem
+          default: 0.0.1-tangem1
+
+      - name: Echo version.properties
+        run: echo ${{ steps.version.outputs.tangem }}
+
+      - name: Check for Tag
+        run: |
+          TAG=${{ steps.version.outputs.tangem }}
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG}"; then
+            echo "Tag ${TAG} exists"
+            exit 1
+          else
+            echo "Tag ${TAG} does not exist"
+          fi
