@@ -36,6 +36,6 @@ jobs:
             github.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ steps.version.outputs.content }}",
+              ref: "refs/tags/${{ steps.properties.outputs.core }}-${{ steps.properties.outputs.tangem }}",
               sha: context.sha
             })
