@@ -34,7 +34,7 @@ task clean(type: Delete) {
 
 tasks.register('hello') {
     doLast {
-        print("======================================")
+        println("======================================")
         def user = System.getenv("GITHUB_USER")
         def token = System.getenv("GITHUB_TOKEN")
         println 'GITHUB_USER -> ' + user
