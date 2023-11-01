@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-tags: true
+          fetch-depth: 0
 
       - name: Read version.properties file
         uses: BrycensRanch/read-properties-action@v1
