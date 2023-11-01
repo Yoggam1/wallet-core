@@ -1,0 +1,37 @@
+name: Tangem publish
+
+on:
+  push:
+    branches:
+      - 'release/**'
+      - 'master'
+  workflow_dispatch:
+
+env:
+  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_DVELOPMENT_ANDROID }}
+
+jobs:
+  tag:
+    name: Create tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Read File Content
+        id: version
+        uses: jaywcjlove/github-action-read-file@v1.2.1
+        with:
+          branch: master
+          path: tangem-version.txt
+      - name: Create tag
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ steps.version.content }}",
+              sha: context.sha
+            })
