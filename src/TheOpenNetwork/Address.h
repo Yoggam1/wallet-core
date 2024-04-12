@@ -50,7 +50,7 @@ public:
     /// Initializes an address with its parts
     explicit Address(
         int8_t workchainId, std::array<byte, AddressData::size> hash,
-        bool userFriendly = true, bool bounceable = true, bool testOnly = false
+        bool userFriendly = true, bool bounceable = false, bool testOnly = false
     ) : addressData(workchainId, hash),
         isUserFriendly(userFriendly),
         isBounceable(bounceable),
